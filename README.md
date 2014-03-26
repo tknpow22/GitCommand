@@ -203,10 +203,6 @@ Git コマンドサンプル
 
     git remote add <name> <remote_url>
 
-### リモートリポジトリに対する接続を削除する。
-
-    git remote rm <name>
-
 ### リモートリポジトリに対する接続名を変更する。
 
     git remote rename <old_name> <new_name>
@@ -214,6 +210,10 @@ Git コマンドサンプル
 ### 指定のリモートリポジトリの情報を表示する。
 
     git remote show <name>
+
+### リモートリポジトリに対する接続を削除する。
+
+    git remote rm <name>
 
 ### リモートリポジトリからすべてのブランチをフェッチする。
 
