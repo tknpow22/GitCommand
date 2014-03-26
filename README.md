@@ -235,13 +235,13 @@ Git コマンドサンプル
 
     git pull <remote_name>
 
-### リモートリポジトリの指定のブランチからフェッチし、マージする。
-
-    git pull <remote_name> <branch>
-
 ### リモートリポジトリからフェッチし、リベースしてマージする。
 
     git pull --rebase <remote_name>
+
+### リモートリポジトリの指定のブランチからフェッチし、マージする。
+
+    git pull <remote_name> <branch>
 
 ### ローカルリポジトリからリポートリポジトリに送信する。
 
