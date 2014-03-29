@@ -140,12 +140,42 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
     git diff
 
+例) test.txt を作成・ステージングした後、変更し、比較してみる。
+
+    $ echo 'line1' > test.txt
+    $ git add test.txt
+    $ echo 'line2' > test.txt
+    $ git diff
+    diff --git a/test.txt b/test.txt
+    index a29bdeb..8a6a2d0 100644
+    --- a/test.txt
+    +++ b/test.txt
+    @@ -1 +1 @@
+    -line1
+    +line2
+
 [git diff]
 
 ### コミットされた内容とステージングされている内容を比較する。
 
     git diff --cached
     git diff --staged
+
+例) test.txt を作成・コミット後、変更・ステージングし、比較してみる。
+
+    $ echo 'line1' > test.txt
+    $ git add test.txt
+    $ git commit -m 'add test.txt'
+    $ echo 'line2' >> test.txt
+    $ git add test.txt
+    $ git diff --staged
+    diff --git a/test.txt b/test.txt
+    index a29bdeb..c0d0fb4 100644
+    --- a/test.txt
+    +++ b/test.txt
+    @@ -1 +1,2 @@
+     line1
+    +line2
 
 [git diff]
 
