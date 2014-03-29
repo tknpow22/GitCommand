@@ -1,36 +1,26 @@
 Git コマンドサンプル
 ====================
 
-### 既にリモートリポジトリがあり、それを使ってローカルリポジトリを作成(クローン)する。
-以下の例ではrepobase下にリポジトリ名でフォルダが作成される。
+### リモートリポジトリをローカルにクローンする。
 
-    cd /repobase
     git clone <remote_url>
 
-### 既にリモートリポジトリがあり、それを使ってローカルリポジトリを作成(クローン)する。
-ローカルのワークツリーのフォルダ名を指定する場合に使用する。
+例) https://github.com/tknpow22/sample.git を /repbase/sample にクローンする
 
-    cd /repobase
-    git clone <remote_url> <repodir>
+    $ cd /repobase
+    $ git clone https://github.com/tknpow22/sample.git
+    $ ls
+    sample
 
-### 既にリモートリポジトリがあり、それを使ってローカルリポジトリを作成する。
+[git clone]
 
-    mkdir /repobase/repodir
-    cd /repobase/repodir
-    git init
-    git remote add origin <remote_url>
-
-### 新しいリモートリポジトリがあり、そこにローカルリポジトリを反映させる。
-
-    git remote add origin <remote_url>
-    git push -u origin --all
-    git push -u origin --tags
-
-### パスワードを平文で保存する
+### パスワードを平文で保存する。
 このコマンドを実行後、認証が必要なコマンド(git remote show origin など)を発行した際に
 入力したパスワードが $HOME/.git-credentials に保存される。
 
     git config credential.helper store
+
+[git config]
 
 ### ローカルのワークツリーの内容をステージングエリアに追加する。
 ワイルドカードも使用できる。また、*追加*といいながら SVN とは違い、
@@ -39,271 +29,460 @@ Git コマンドサンプル
     git add <file>
     git add <directory>
 
-### 現在のワークツリーを一時的に保存する(プッシュ)。
+[git add]
+
+### ワークツリー、ステージングエリア、追跡対象外のファイルの状態を一覧表示する。
+
+    git status
+
+[git status]
+
+### 現在のワークツリーを一時的に保存する。
+スタックとして働くので先頭(stash@{0})にプッシュされる。
 
     git stash
     git stash save
 
-### 一時的に保存されている内容を見る。
-スタックとして働くので先頭(stash@{0})が最後に保存(プッシュ)した内容
-
-    git stash list
+[git stash]
 
 ### 一時的に保存されている内容から先頭のものをワークツリーに反映する。
 
     git stash apply
 
-### 一時的に保存されている内容から指定のものをワークツリーに反映する。
+[git stash]
 
-    git stash apply <stash_name>
+### 一時的に保存されている内容を見る。
+スタックとして働くので一覧のうち先頭(stash@{0})が最後に保存(プッシュ)した内容。
+
+    git stash list
+
+[git stash]
 
 ### 一時的に保存されている内容から先頭のものを削除する。
 
     git stash drop
 
-### 一時的に保存されている内容から指定のものを削除する。
+[git stash]
 
-    git stash drop <stash_name>
-
-### ステージされた内容とワークツリーの内容を比較する。
+### ステージングされた内容とワークツリーの内容を比較する。
 
     git diff
 
-### コミットされた内容とステージされた内容を比較する。
+[git diff]
+
+### コミットされた内容とステージングされている内容を比較する。
 
     git diff --cached
     git diff --staged
 
-### ステージ済みのファイルを移動/リネームする。
+[git diff]
 
-    git mv <old_file> <new_file>
+### 編集中のファイルの内容を破棄し、直前にステージングした内容に戻す。
+ステージングした内容がない場合、直前にコミットした内容に戻す
 
-### ワークツリーの特定のファイルの変更を取り消す
-ワークツリーでの変更はすべて消えてしまうので、注意すること。
-
+    git checkout <file>
     git checkout -- <file>
 
-### ステージングエリアにある内容(スナップショット)をローカルリポジトリにコミットする。
+例) test.txt を編集・ステージングし、さらに編集した後、編集内容を破棄して、直前にステージングした内容に戻す。
 
-    git commit -m "message."
+    $ echo 'line1' > test.txt
+    $ cat test.txt
+    line1
+    $ git add test.txt
+    $ echo 'line2' >> test.txt
+    $ cat test.txt
+    line1
+    line2
+    $ git checkout -- test.txt
+    $ cat test.txt
+    line1
 
-### 追跡対象になっているファイルをステージし、ローカルリポジトリにコミットする。
+[git checkout]
 
-    git commit -a -m "message."
-
-### ステージングエリアにある内容(スナップショット)で直前のコミットを修正して、ローカルリポジトリにコミットする。
-リモートリポジトリに push した後は使用してはいけない。
-
-    git commit --amend -m "message."
-
-### HEAD が指しているコミットに軽量タグを作成する。
-
-    git tag <tag>
-
-### HEAD が指しているコミットに注釈付きタグを作成する。
-
-    git tag -a -m "message." <tag>
-
-### すべてのタグをリポートリポジトリの指定のブランチに送信する。
-
-    git push <remote_name> <branch> --tags
-
-### ワークツリー、ステージングエリア、追跡対象外のファイルを一覧表示する。
-
-    git status
-
-### コミット履歴を表示する。
-
-    git log
-
-### コミット履歴を表示する(直近の n エントリのみ表示する)。
-
-    git log -<number>
-    git log -n <number>
-
-### コミット履歴を表示する(各コミットの diff を表示する)。
-
-    git log -p
-
-### コミット履歴を表示する(各コミットの diff をワード単位で表示する)。
-
-    git log -p --word-diff
-
-### 例) コミット履歴をハッシュ(短縮版)と件名とでグラフィカルに表示する。
-
-    git log --pretty=format:"%h %s" --graph
-
-### 例) コミット履歴をハッシュ(短縮版)、件名、タグなどとで一行で表示する。
-
-    git log --oneline --decorate
-
-### ファイルの過去のリビジョンをチェックアウトする。
-ワークツリーの指定したファイルは置き換えられるので注意すること。
-
-    git checkout <commit> <file>
-
-### ワークツリーのすべてのファイルを指定したリビジョンに置き換える
-このコマンドを実行すると、"detached HEAD" 状態になるので注意すること。
-なお、ワークツリーにステージングしていない変更がある場合、警告が表示され、置き換えられない。
-
-    git checkout <commit>
-
-### ステージジング済みの内容をリセットする
-ワークツリーは変更されない。
-
-    git reset <file>
-
-### ステージジング済みの内容とワークツリーをリセットして直前のコミットの状態と同じにする。
-ワークツリーが変更されるので注意すること。
+### 編集中の内容をすべて破棄し、直前にコミットした内容に戻す。
+ワークツリーでの編集内容はすべて破棄されるので注意すること。
 
     git reset --hard
 
-### コミット済みのスナップショットを元に戻す(取り消す)。
-履歴をも取り消してしまうため、ローカルリポジトリにのみ使用すること。
-リモートリポジトリに push した後は使用してはいけない。
+例) testA.txt、testB.txt を編集・コミットし、さらに編集した後、すべてのファイルの編集内容を破棄して、直前コミットした内容に戻す。
 
-    git reset <commit>
+    $ echo 'lineA1' > testA.txt
+    $ echo 'lineB1' > testB.txt
+    $ cat testA.txt
+    lineA1
+    $ cat testB.txt
+    lineB1
+    $ git add *.txt
+    $ git commit -m 'add testA.txt, testB.txt'
+    $ echo 'lineA2' >> testA.txt
+    $ echo 'lineB2' >> testB.txt
+    $ cat testA.txt
+    lineA1
+    lineA2
+    $ cat testB.txt
+    lineB1
+    lineB2
+    $ git reset --hard
+    HEAD is now at 7402f89 add testA.txt, testB.txt
+    $ cat testA.txt
+    lineA1
+    $ cat testB.txt
+    lineB1
 
-### コミット済みのスナップショットを元に戻す(打ち消す)。
+[git reset]
+
+### 直前のコミットを打ち消しすための新たなコミットを作成する。
 ひとつのコミットのみを元に戻す打ち消しであり、取り消しでないことに注意すること。
 そのため、打ち消したコミットも履歴に残る。
 
     git revert <commit>
 
+例) 一つ前のコミットの状態に戻し、それを履歴にも残す。
+
+    $ echo 'line1' > test.txt
+    $ git add test.txt
+    $ git commit -m 'add test.txt'
+    $ echo 'line2' >> test.txt
+    $ git commit -a -m 'add line2'
+    $ echo 'line3' >> test.txt
+    $ git commit -a -m 'add line3'
+    $ git log --oneline --decorate
+    d68cda0 (HEAD, master) add line3
+    1c7205c add line2
+    82f7743 add test.txt
+    $ cat test.txt
+    line1
+    line2
+    line3
+    $ git revert HEAD
+    # エディタが起動し、メッセージを入力する
+    $  git log --oneline --decorate
+    4372be1 (HEAD, master) Revert "add line3"
+    d68cda0 add line3
+    1c7205c add line2
+    82f7743 add test.txt
+    $ cat test.txt
+    line1
+    line2
+
+[git revert]
+
+### 編集中のファイルの内容を破棄し、直前にコミットした内容に戻す。
+ステージングした内容がある場合、当該ファイルのステージング内容も破棄される。
+
+    git checkout <commit> <file>
+    git checkout <commit> -- <file>
+
+例) test.txt を編集・ステージングし、さらに編集した後、編集内容を破棄して、直前にコミットした内容に戻す。
+
+    $ echo 'line1' > test.txt
+    $ cat test.txt
+    line1
+    $ git add test.txt
+    $ git commit -m 'add test.txt'
+    $ echo 'line2' >> test.txt
+    $ cat test.txt
+    line1
+    line2
+    $ git add test.txt
+    $ echo 'line3' >> test.txt
+    $ cat test.txt
+    line1
+    line2
+    line3
+    $ git checkout HEAD -- test.txt
+    $ cat test.txt
+    line1
+
+[git checkout]
+
+
+### HEAD が指しているコミットに軽量タグを作成する。
+
+    git tag <tag>
+
+[git tag]
+
+### HEAD が指しているコミットに注釈付きタグを作成する。
+
+    git tag -a -m "message." <tag>
+
+[git tag]
+
+### ステージング済みのファイルを移動/リネームする。
+
+    git mv <old_file> <new_file>
+
+[git mv]
+
+### 誤ってステージングしてしまったファイルをステージングエリアから削除する。
+ワークツリーのファイルは変更されない。
+
+    git rm --cached <file>
+    git rm --cached -- <file>
+
+[git rm]
+
 ### ワークツリーから追跡対象外のファイルを削除する。
 
     git clean -f
+
+[git clean]
 
 ### ワークツリーから追跡対象外のファイルおよびフォルダを削除する。
 
     git clean -df
 
-### ワークツリーから削除したステージング済みのファイルをステージングエリアから削除する。
+[git clean]
 
-    git rm <file>
+### ステージングエリアにある内容をコミットする。
 
-### ワークツリーにファイルは残しつつステージングエリアに追加済みのファイルを削除する。
+    git commit -m "message."
 
-    git rm --cached <file>
+[git commit]
 
-### ローカルリポジトリのすべてのブランチを表示する。
+### 追跡対象になっているファイルをステージングエリアに追加してから、コミットする。
+git add を省略するときに使う。
 
-    git branch
+    git commit -a -m "message."
 
-### ローカルのリモートブランチを表示する
+[git commit]
 
-    git branch -r
+### ステージングエリアにある内容で直前のコミットを上書きする。
 
-### すべてのブランチを表示する
+リモートリポジトリに push した後は使用してはいけない。
 
-    git branch -a
+    git commit --amend -m "message."
 
-### 新しいブランチをローカルリポジトリに作成する。
+[git commit]
 
-    git branch <new_branch>
+### コミット履歴をハッシュ(短縮版)、件名、タグ等を一行で表示する。
 
-### 新しいブランチをローカルリポジトリに作成し、作成したブランチに切り替える。
+    git log --oneline --decorate
 
-    git checkout -b <new_branch>
+[git log]
 
-### 指定のブランチを元に新しいブランチをローカルリポジトリに作成し、作成したブランチに切り替える。
+### リモートブランチのコミット履歴を表示する。
 
-    git checkout -b <new_branch> <existing_branch>
+    git log <remote_name>/<branch>
 
-### ブランチを切り替える
+[git log]
 
-    git checkout <branch>
+### リモートリポジトリからフェッチし、マージする。
+
+    git pull <remote_name>
+
+[git pull]
+
+### リモートリポジトリからフェッチし、リベースしてマージする。
+
+    git pull --rebase <remote_name>
+
+[git pull]
+
+### リモートリポジトリの指定のブランチからフェッチし、マージする。
+
+    git pull <remote_name> <branch>
+
+[git pull]
+
+### ローカルリポジトリからリポートリポジトリに送信する。
+
+    git push <remote_name> <branch>
+
+[git push]
+
+### すべてのタグをリポートリポジトリの指定のブランチに送信する。
+
+    git push <remote_name> <branch> --tags
+
+[git push]
 
 ### 作成した新しいブランチをリモートリポジトリに登録する
 
     git push origin <branch>
 
-### ローカルリポジトリのブランチを削除する。
-
-    git branch -d <branch>
-
-### リモートリポジトリで削除されたブランチのローカルキャッシュを削除する。
-
-    git fetch --prune origin
+[git push]
 
 ### ローカルリポジトリで削除したブランチをリモートリポジトリでも削除する。
 
     git push origin :<branch>
 
+[git push]
+
+### ローカルリポジトリのすべてのブランチを表示する。
+
+    git branch
+
+[git branch]
+
+### ローカルのリモートブランチを表示する
+
+    git branch -r
+
+[git branch]
+
+### すべてのブランチを表示する
+
+    git branch -a
+
+[git branch]
+
+### 新しいブランチをローカルリポジトリに作成する。
+
+    git branch <new_branch>
+
+[git branch]
+
+### ローカルリポジトリのブランチを削除する。
+
+    git branch -d <branch>
+
+[git branch]
+
+### 新しいブランチをローカルリポジトリに作成し、作成したブランチに切り替える。
+
+    git checkout -b <new_branch>
+
+[git checkout]
+
+### 指定のブランチを元に新しいブランチをローカルリポジトリに作成し、作成したブランチに切り替える。
+
+    git checkout -b <new_branch> <existing_branch>
+
+[git checkout]
+
+### ブランチを切り替える
+
+    git checkout <branch>
+
+[git checkout]
+
+### リモートリポジトリで削除されたブランチのローカルキャッシュを削除する。
+
+    git fetch --prune origin
+
+[git fetch]
+
+### リモートリポジトリからすべてのブランチをフェッチする。
+
+    git fetch <remote_name>
+
+[git fetch]
+
+### リモートリポジトリの指定のブランチをフェッチする。
+
+    git fetch <remote_name> <branch>
+
+[git fetch]
+
 ### 指定したブランチを現在のブランチにマージする。
 
     git merge <branch>
 
+[git-merge]
+
 ### 指定したブランチを現在のブランチにマージする(ファストフォワードしない)。
 
     git merge --no-ff <branch>
+
+[git-merge]
+
+### リモートブランチの内容をマージする
+
+    git merge <remote_name>/<branch>
+
+[git-merge]
 
 ### 現在のブランチを指定のブランチにリベースする。
 リモートリポジトリに push した後は使用してはいけない。
 
     git rebase <branch>
 
+[git-rebase]
+
 ### ローカルリポジトリの reflog を表示する。
 
     git reflog
+
+[git reflog]
 
 ### リモート接続の一覧を URL を含めて表示する。
 
     git remote -v
 
+[git remote]
+
 ### リモートリポジトリに対する新規接続を作成する。
 
     git remote add <name> <remote_url>
+
+[git remote]
+
+例) 新たなローカルリポジトリを作成し、それにリモートリポジトリを追加する。
+
+    $ cd /repobase
+    $ mkdir sample
+    $ cd sample
+    $ git init
+    $ git remote add origin https://github.com/tknpow22/sample.git
 
 ### リモートリポジトリに対する接続名を変更する。
 
     git remote rename <old_name> <new_name>
 
+[git remote]
+
 ### 指定のリモートリポジトリの情報を表示する。
 
     git remote show <name>
+
+[git remote]
 
 ### リモートリポジトリに対する接続を削除する。
 
     git remote rm <name>
 
-### リモートリポジトリからすべてのブランチをフェッチする。
+[git remote]
 
-    git fetch <remote_name>
+### master から新しいブランチ bugfix を作成し、ブランチ bugfix で作業後 master をマージ(リベース)した後、master で bugfix をマージ後、ブランチ bugfix を削除する
 
-### リモートリポジトリの指定のブランチをフェッチする。
+    $ echo 'line1' > test.txt
+    $ git add test.txt
+    $ git commit -m 'add test.txt'
+    $ git checkout -b bugfix
+    $ echo 'bugfix' >> test.txt
+    $ git add test.txt
+    $ git commit -m 'bugfix'
+    # なお、この間に master ブランチでも test.txt に変更が加えられコミットされたものとする
+    $ git rebase master
+    # 競合が発生するので修正する
+    $ git add test.txt
+    $ git rebase --continue
+    $ git checkout master
+    $ git merge bugfix
+    $ git branch -d bugfix
 
-    git fetch <remote_name> <branch>
-
-### リモートブランチのコミット履歴を表示する。
-
-    git log <remote_name>/<branch>
-
-### リモートブランチの内容をマージする
-
-    git merge <remote_name>/<branch>
-
-### リモートリポジトリからフェッチし、マージする。
-
-    git pull <remote_name>
-
-### リモートリポジトリからフェッチし、リベースしてマージする。
-
-    git pull --rebase <remote_name>
-
-### リモートリポジトリの指定のブランチからフェッチし、マージする。
-
-    git pull <remote_name> <branch>
-
-### ローカルリポジトリからリポートリポジトリに送信する。
-
-    git push <remote_name> <branch>
-
-### 例) master のワークツリーの作業内容をリモートリポジトリの内容を取得、マージ(リベース)してコミットを整理後、リモートリポジトリに送信する。
-
-    git checkout master
-    git fetch origin master
-    git rebase origin/master
-    # マージ作業を行う
-    git push origin master
-
+  [git add]: git-add.md
+  [git branch]: git-branch.md
+  [git checkout]: git-checkout.md
+  [git clean]: git-clean.md
+  [git clone]: git-clone.md
+  [git commit]: git-commit.md
+  [git config]: git-config.md
+  [git diff]: git-diff.md
+  [git fetch]: git-fetch.md
+  [git log]: git-log.md
+  [git-merge]: git-merge.md
+  [git mv]: git-mv.md
+  [git pull]: git-pull.md
+  [git push]: git-push.md
+  [git-rebase]: git-rebase.md
+  [git reflog]: git-reflog.md
+  [git remote]: git-remote.md
+  [git reset]: git-reset.md
+  [git revert]: git-revert.md
+  [git rm]: git-rm.md
+  [git stash]: git-stash.md
+  [git status]: git-status.md
+  [git tag]: git-tag.md
