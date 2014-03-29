@@ -44,7 +44,7 @@ Git コマンドサンプル
 
     git status
 
-例) test.txt の追加・変更
+例) test.txt の追加・変更と test2.txt の追加の状態を表示する。
 
     $ echo 'line1' > test.txt
     $ git add test.txt
