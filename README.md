@@ -74,9 +74,9 @@ Git コマンドサンプル
 
 [git status]
 
-### 現在のワークツリーの状態を一時的領域(stash)に保存する。
+### 現在のワークツリーの状態を一時領域(stash)に保存する。
 stash はスタックとして働き、保存した内容は stash の先頭(stash@{0})にプッシュされる。
-なお、コミットがまだ一度もされていない場合、保存できない。
+なお、コミットがまだ一度もされていない場合、保存できないので注意すること。
 
     git stash
     git stash save
@@ -89,19 +89,20 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
 [git stash]
 
-### 一時的領域(stash)の一覧を見る。
-先頭(stash@{0})が最後に保存(プッシュ)した内容。
+### 一時領域(stash)の一覧を見る。
+最後に保存(プッシュ)した内容は一覧の先頭(stash@{0})に保存されている。
 
     git stash list
 
-例) 保存されている一覧を見る。
+例) stash の一覧を見る。
 
     $ git stash list
     stash@{0}: WIP on master: 6d79282 initail commit
 
 [git stash]
 
-### 一時的領域(stash)の先頭の内容をワークツリーに反映する。
+### 一時領域(stash)の先頭の内容をワークツリーに反映する。
+ワークツリーに反映後も stash の内容は破棄されないので、必要であれば git stash drop 等で一時領域から削除すること。
 
     git stash apply
 
@@ -124,7 +125,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
 [git stash]
 
-### 一時的領域(stash)の先頭の内容を削除する。
+### 一時領域(stash)の先頭の内容を削除する。
 
     git stash drop
 
