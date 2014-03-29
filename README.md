@@ -22,12 +22,21 @@ Git コマンドサンプル
 
 [git config]
 
-### ローカルのワークツリーの内容をステージングエリアに追加する。
+### ファイルの追加・変更をステージングする。
 ワイルドカードも使用できる。また、*追加*といいながら SVN とは違い、
 ファイルを改変したことを追加するものであり、ファイルの追加、更新毎に行う必要がある。
 
     git add <file>
     git add <directory>
+
+例) test.txt を追加・変更しステージングする。
+
+    #### test.txt の追加をステージングする
+    $ echo 'line1' > test.txt
+    $ git add test.txt
+    #### test.txt の変更をステージングする
+    $ echo 'line2' >> test.txt
+    $ git add test.txt
 
 [git add]
 
@@ -457,17 +466,19 @@ git add を省略するときに使う。
     $ echo 'bugfix' >> test.txt
     $ git add test.txt
     $ git commit -m 'bugfix'
-    #### bugfix で作業の間に master ブランチでも test.txt に変更が加えられコミットされたものとする
+    #### bugfix で作業している間に master ブランチでも test.txt に変更が加えられコミットされたものとする
     #### ブランチ bugfix に master をマージ(リベース)する
     $ git rebase master
-    #### 競合が発生するので修正する
+    #### 競合が発生するのでエディタ等で修正する
+    $ vi test.txt
+    #### 修正をコミットし、リベースを続ける
     $ git add test.txt
     $ git rebase --continue
     #### master に切り替える
     $ git checkout master
     #### master にブランチ bugfix をマージする
     $ git merge bugfix
-    #### ブランチ bugfix を削除する
+    #### 不要になったブランチ bugfix を削除する
     $ git branch -d bugfix
 
   [git add]: git-add.md
