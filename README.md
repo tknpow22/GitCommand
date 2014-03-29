@@ -44,6 +44,34 @@ Git コマンドサンプル
 
     git status
 
+例) test.txt の追加・変更
+
+    $ echo 'line1' > test.txt
+    $ git add test.txt
+    $ echo 'line2' >> test.txt
+    $ echo 'line0' > test2.txt
+
+    $ git status
+    On branch master
+    
+    Initial commit
+    
+    Changes to be committed:
+      (use "git rm --cached <file>..." to unstage)
+    
+            new file:   test.txt
+    
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+    
+            modified:   test.txt
+    
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+    
+            test2.txt
+
 [git status]
 
 ### 現在のワークツリーを一時的に保存する。
