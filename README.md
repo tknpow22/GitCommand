@@ -447,20 +447,27 @@ git add を省略するときに使う。
 
 ### master から新しいブランチ bugfix を作成し、ブランチ bugfix で作業後 master をマージ(リベース)した後、master で bugfix をマージ後、ブランチ bugfix を削除する
 
+    #### ファイル test.txt をコミットする
     $ echo 'line1' > test.txt
     $ git add test.txt
     $ git commit -m 'add test.txt'
+    #### ブランチ bugfix を作成し、切り替える
     $ git checkout -b bugfix
+    #### ブランチ bugfix で作業しコミットする
     $ echo 'bugfix' >> test.txt
     $ git add test.txt
     $ git commit -m 'bugfix'
-    # なお、この間に master ブランチでも test.txt に変更が加えられコミットされたものとする
+    #### bugfix で作業の間に master ブランチでも test.txt に変更が加えられコミットされたものとする
+    #### ブランチ bugfix に master をマージ(リベース)する
     $ git rebase master
-    # 競合が発生するので修正する
+    #### 競合が発生するので修正する
     $ git add test.txt
     $ git rebase --continue
+    #### master に切り替える
     $ git checkout master
+    #### master にブランチ bugfix をマージする
     $ git merge bugfix
+    #### ブランチ bugfix を削除する
     $ git branch -d bugfix
 
   [git add]: git-add.md
