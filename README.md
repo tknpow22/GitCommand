@@ -74,30 +74,64 @@ Git コマンドサンプル
 
 [git status]
 
-### 現在のワークツリーを一時的に保存する。
+### 現在のワークツリーの状態を一時的に保存する。
 スタックとして働くので先頭(stash@{0})にプッシュされる。
+コミットがまだ一度もされていない場合、保存できない。
 
     git stash
     git stash save
 
+例) ワークツリーの状態を保存する。
+
+    $ git stash
+    Saved working directory and index state WIP on master: 6d79282 initail commit
+    HEAD is now at 6d79282 initail commit
+
 [git stash]
 
-### 一時的に保存されている内容から先頭のものをワークツリーに反映する。
-
-    git stash apply
-
-[git stash]
-
-### 一時的に保存されている内容を見る。
+### 一時的に保存されている一覧を見る。
 スタックとして働くので一覧のうち先頭(stash@{0})が最後に保存(プッシュ)した内容。
 
     git stash list
 
+例) 保存されている一覧を見る。
+
+    $ git stash list
+    stash@{0}: WIP on master: 6d79282 initail commit
+
 [git stash]
 
-### 一時的に保存されている内容から先頭のものを削除する。
+### 一時的に保存されている一覧の先頭のものをワークツリーに反映する。
+
+    git stash apply
+
+例) 保存されている一覧の先頭のものをワークツリーに反映する。
+
+    $ git stash apply
+    On branch master
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+    
+            modified:   test.txt
+    
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+    
+            test2.txt
+    
+    no changes added to commit (use "git add" and/or "git commit -a")
+
+[git stash]
+
+### 一時的に保存されている一覧の先頭のものを削除する。
 
     git stash drop
+
+例) 保存されている一覧の先頭のものを削除する。
+
+    $ git stash drop
+    Dropped refs/stash@{0} (9042f98e5126009e4133962035f049028236a055)
 
 [git stash]
 
