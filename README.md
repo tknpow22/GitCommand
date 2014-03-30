@@ -368,6 +368,30 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     git rm --cached <file>
     git rm --cached -- <file>
 
+例) 誤って追加してしまった test.bak をステージングエリアから削除する。
+
+    $ echo 'line0' >> test.bak
+    $ git add test.bak
+    $ git status
+    On branch master
+    Changes to be committed:
+      (use "git reset HEAD <file>..." to unstage)
+    
+            new file:   test.bak
+    
+    $ git rm --cached test.bak
+    $ git status
+    On branch master
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+    
+            test.bak
+    
+    nothing added to commit but untracked files present (use "git add" to track)
+    
+    $ cat test.bak
+    line0
+
 [git rm]
 
 ### ワークツリーから追跡対象外のファイルを削除する。
