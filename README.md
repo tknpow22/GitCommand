@@ -40,7 +40,7 @@ Git コマンドサンプル
 
 [git add]
 
-### ワークツリー、ステージングエリア、追跡対象外のファイルの状態を一覧表示する。
+### ステージングエリア、ワークツリー、追跡対象外のファイルの状態を一覧表示する。
 
     git status
 
@@ -101,7 +101,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 [git stash]
 
 ### 一時領域(stash)の先頭の内容をワークツリーに反映する。
-ワークツリーに反映後も stash の内容は破棄されないので、必要であれば git stash drop 等で一時領域から削除すること。
+ワークツリーに反映後も stash の内容は破棄されないので、必要であれば git stash drop 等で stash から削除すること。
 
     git stash apply
 
@@ -179,7 +179,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 [git diff]
 
 ### 編集中のファイルの内容を破棄し、直前にステージングした内容に戻す。
-ステージングした内容がない場合、直前にコミットした内容に戻す。
+ステージングした内容がない場合、直前にコミットした内容に戻る。
 
     git checkout <file>
     git checkout -- <file>
@@ -195,6 +195,35 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     line1
     line2
     $ git checkout -- test.txt
+    $ cat test.txt
+    line1
+
+[git checkout]
+
+### 編集中のファイルの内容を破棄し、直前にコミットした内容に戻す。
+当該ファイルにステージングした内容がある場合、それも破棄される。
+
+    git checkout <commit> <file>
+    git checkout <commit> -- <file>
+
+例) test.txt を編集・ステージングし、さらに編集した後、編集内容を破棄して、直前にコミットした内容に戻す。
+
+    $ echo 'line1' > test.txt
+    $ cat test.txt
+    line1
+    $ git add test.txt
+    $ git commit -m 'add test.txt'
+    $ echo 'line2' >> test.txt
+    $ cat test.txt
+    line1
+    line2
+    $ git add test.txt
+    $ echo 'line3' >> test.txt
+    $ cat test.txt
+    line1
+    line2
+    line3
+    $ git checkout HEAD -- test.txt
     $ cat test.txt
     line1
 
@@ -233,7 +262,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 [git reset]
 
 ### 直前のコミットを打ち消しすための新たなコミットを作成する。
-ひとつのコミットのみを元に戻す打ち消しであり、取り消しでないことに注意すること。
+ひとつのコミットのみを元に戻す*打ち消し*であり、*取り消し*でないことに注意すること。
 そのため、打ち消したコミットも履歴に残る。
 
     git revert <commit>
@@ -256,7 +285,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     line2
     line3
     $ git revert HEAD
-    # エディタが起動し、メッセージを入力する
+    # エディタが起動するので、必要であればメッセージを入力すること。
     $  git log --oneline --decorate
     4372be1 (HEAD, master) Revert "add line3"
     d68cda0 add line3
@@ -267,36 +296,6 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     line2
 
 [git revert]
-
-### 編集中のファイルの内容を破棄し、直前にコミットした内容に戻す。
-ステージングした内容がある場合、当該ファイルのステージング内容も破棄される。
-
-    git checkout <commit> <file>
-    git checkout <commit> -- <file>
-
-例) test.txt を編集・ステージングし、さらに編集した後、編集内容を破棄して、直前にコミットした内容に戻す。
-
-    $ echo 'line1' > test.txt
-    $ cat test.txt
-    line1
-    $ git add test.txt
-    $ git commit -m 'add test.txt'
-    $ echo 'line2' >> test.txt
-    $ cat test.txt
-    line1
-    line2
-    $ git add test.txt
-    $ echo 'line3' >> test.txt
-    $ cat test.txt
-    line1
-    line2
-    line3
-    $ git checkout HEAD -- test.txt
-    $ cat test.txt
-    line1
-
-[git checkout]
-
 
 ### HEAD が指しているコミットに軽量タグを作成する。
 
