@@ -301,7 +301,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
     git tag <tag>
 
-例) 直前のコミットにタグ v1.0 を作成する。
+例) タグ v1.0 を作成する。
 
     $ git log --oneline --decorate
     86331ad (HEAD, master) add line3
@@ -319,7 +319,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
     git tag -a -m "message." <tag>
 
-例) 直前のコミットに注釈付きタグ v1.0 を作成する。
+例) 注釈付きタグ v1.0 を作成する。
 
     $ git tag -a -m 'v1.0-message' v1.0
     $ git show v1.0
