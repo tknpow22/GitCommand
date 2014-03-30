@@ -301,11 +301,48 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
     git tag <tag>
 
+例) 直前のコミットにタグ v1.0 を作成する。
+
+    $ git log --oneline --decorate
+    86331ad (HEAD, master) add line3
+    c4b38db add line2
+    16ee40c test.txt
+    $ git tag v1.0
+    $ git log --oneline --decorate
+    86331ad (HEAD, tag: v1.0, master) add line3
+    c4b38db add line2
+    16ee40c test.txt
+
 [git tag]
 
 ### HEAD が指しているコミットに注釈付きタグを作成する。
 
     git tag -a -m "message." <tag>
+
+例) 直前のコミットに注釈付きタグ v1.0 を作成する。
+
+    $ git tag -a -m 'v1.0-message' v1.0
+    $ git show v1.0
+    tag v1.0
+    Tagger: tknpow22 <tknpow22@koutou-software.co.jp>
+    Date:   Sun Mar 30 13:20:41 2014 +0900
+    
+    v1.0-message
+    
+    commit 810b9ec905bc142687621e60726a05ae945af480
+    Author: tknpow22 <tknpow22@koutou-software.co.jp>
+    Date:   Sun Mar 30 13:19:44 2014 +0900
+    
+        add line3
+    
+    diff --git a/test.txt b/test.txt
+    index c0d0fb4..83db48f 100644
+    --- a/test.txt
+    +++ b/test.txt
+    @@ -1,2 +1,3 @@
+     line1
+     line2
+    +line3
 
 [git tag]
 
