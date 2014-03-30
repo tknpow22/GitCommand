@@ -346,9 +346,19 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
 [git tag]
 
-### ステージング済みのファイルを移動/リネームする。
+### ファイルを移動/リネームする。
 
     git mv <old_file> <new_file>
+
+例) test.txt を test2.txt にリネームする
+
+    $ git mv test.txt test2.txt
+    $ git status
+    On branch master
+    Changes to be committed:
+      (use "git reset HEAD <file>..." to unstage)
+    
+            renamed:    test.txt -> test2.txt
 
 [git mv]
 
