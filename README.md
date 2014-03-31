@@ -34,6 +34,7 @@ Git コマンドサンプル
     #### test.txt の追加をステージングする
     $ echo 'line1' > test.txt
     $ git add test.txt
+    
     #### test.txt の変更をステージングする
     $ echo 'line2' >> test.txt
     $ git add test.txt
@@ -194,7 +195,9 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     $ cat test.txt
     line1
     line2
+    
     $ git checkout -- test.txt
+    
     $ cat test.txt
     line1
 
@@ -223,7 +226,9 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     line1
     line2
     line3
+    
     $ git checkout HEAD -- test.txt
+    
     $ cat test.txt
     line1
 
@@ -252,8 +257,10 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     $ cat testB.txt
     lineB1
     lineB2
+    
     $ git reset --hard
     HEAD is now at 7402f89 add testA.txt, testB.txt
+    
     $ cat testA.txt
     lineA1
     $ cat testB.txt
@@ -284,8 +291,10 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     line1
     line2
     line3
+    
     $ git revert HEAD
-    # エディタが起動するので、必要であればメッセージを入力すること。
+    #### エディタが起動するので、必要であればメッセージを入力すること。
+    
     $  git log --oneline --decorate
     4372be1 (HEAD, master) Revert "add line3"
     d68cda0 add line3
@@ -307,7 +316,9 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
     86331ad (HEAD, master) add line3
     c4b38db add line2
     16ee40c test.txt
+    
     $ git tag v1.0
+    
     $ git log --oneline --decorate
     86331ad (HEAD, tag: v1.0, master) add line3
     c4b38db add line2
@@ -353,6 +364,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 例) test.txt を test2.txt にリネームする
 
     $ git mv test.txt test2.txt
+    
     $ git status
     On branch master
     Changes to be committed:
@@ -380,6 +392,7 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
             new file:   test.bak
     
     $ git rm --cached test.bak
+    
     $ git status
     On branch master
     Untracked files:
@@ -696,6 +709,7 @@ git add を省略するときに使う。
 
     $ git checkout -b iss8
     Switched to a new branch 'iss8'
+    
     $ git branch
       iss1
       iss5
@@ -712,6 +726,7 @@ git add を省略するときに使う。
 
     $ git checkout -b iss9 iss5
     Switched to a new branch 'iss9'
+    
     $ git branch
       iss1
       iss5
@@ -729,6 +744,7 @@ git add を省略するときに使う。
 
     $ git checkout iss1
     Switched to branch 'iss1'
+    
     $ git branch
     * iss1
       iss5
@@ -757,6 +773,7 @@ git add を省略するときに使う。
     Fast-forward
      test.txt | 1 +
      1 file changed, 1 insertion(+)
+    
     $ git log --oneline --decorate
     7999167 (HEAD, master, iss1) add line4
     91e7c4a add line3
@@ -784,6 +801,7 @@ git add を省略するときに使う。
     Merge made by the 'recursive' strategy.
      test.txt | 1 +
      1 file changed, 1 insertion(+)
+    
     $ git log --oneline --decorate
     537f055 (HEAD, master) Merge branch 'iss2'
     832479b (iss2) add line5
@@ -924,91 +942,32 @@ git add を省略するときに使う。
 
 [git remote]
 
-### リモートリポジトリに対する接続名を変更する。
-
-    git remote rename <old_name> <new_name>
-
-例) 新たにリポートリポジトリ https://github.com/tknpow22/sample.git を rtest として追加し、utest に変更する。
-
-    $ git remote -v
-    origin  https://github.com/tknpow22/sample.git (fetch)
-    origin  https://github.com/tknpow22/sample.git (push)
-    $ git remote add rtest https://github.com/tknpow22/sample.git
-    $ git remote -v
-    origin  https://github.com/tknpow22/sample.git (fetch)
-    origin  https://github.com/tknpow22/sample.git (push)
-    rtest   https://github.com/tknpow22/sample.git (fetch)
-    rtest   https://github.com/tknpow22/sample.git (push)
-    
-    $ git remote rename rtest utest
-    
-    $ git remote -v
-    origin  https://github.com/tknpow22/sample.git (fetch)
-    origin  https://github.com/tknpow22/sample.git (push)
-    utest   https://github.com/tknpow22/sample.git (fetch)
-    utest   https://github.com/tknpow22/sample.git (push)
-
-[git remote]
-
-### 指定のリモートリポジトリの情報を表示する。
-
-    git remote show <name>
-
-例) リポートリポジトリ utest の情報を表示する。
-
-    $ git remote show utest
-    * remote utest
-      Fetch URL: https://github.com/tknpow22/sample.git
-      Push  URL: https://github.com/tknpow22/sample.git
-      HEAD branch: master
-      Remote branches:
-        iss5   new (next fetch will store in remotes/utest)
-        master new (next fetch will store in remotes/utest)
-      Local ref configured for 'git push':
-        master pushes to master (up to date)
-
-[git remote]
-
-### リモートリポジトリに対する接続を削除する。
-
-    git remote remove <name>
-
-例) リポートリポジトリ utest に対する接続を削除する。
-
-    $ git remote -v
-    origin  https://github.com/tknpow22/sample.git (fetch)
-    origin  https://github.com/tknpow22/sample.git (push)
-    utest   https://github.com/tknpow22/sample.git (fetch)
-    utest   https://github.com/tknpow22/sample.git (push)
-    
-    $ git remote remove utest
-    
-    $ git remote -v
-    origin  https://github.com/tknpow22/sample.git (fetch)
-    origin  https://github.com/tknpow22/sample.git (push)
-
-[git remote]
-
 ### master から新しいブランチ bugfix を作成し、ブランチ bugfix で作業後 master をマージ(リベース)した後、master で bugfix をマージ後、ブランチ bugfix を削除する
 
     #### ファイル test.txt をコミットする
     $ echo 'line1' > test.txt
     $ git add test.txt
     $ git commit -m 'add test.txt'
+    
     #### ブランチ bugfix を作成し、切り替える
     $ git checkout -b bugfix
     #### ブランチ bugfix で作業しコミットする
     $ echo 'bugfix' >> test.txt
     $ git add test.txt
     $ git commit -m 'bugfix'
+    
     #### bugfix で作業している間に master ブランチでも test.txt に変更が加えられコミットされたものとする
+    
     #### ブランチ bugfix に master をマージ(リベース)する
     $ git rebase master
+    
     #### 競合が発生するのでエディタ等で修正する
     $ vi test.txt
+    
     #### 修正をコミットし、リベースを続ける
     $ git add test.txt
     $ git rebase --continue
+    
     #### master に切り替える
     $ git checkout master
     #### master にブランチ bugfix をマージする
