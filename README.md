@@ -570,21 +570,23 @@ git add を省略するときに使う。
 
 [git log]
 
-### リモートリポジトリからフェッチし、マージする。
-
-    git pull <remote_name>
-
-[git pull]
-
-### リモートリポジトリからフェッチし、リベースしてマージする。
-
-    git pull --rebase <remote_name>
-
-[git pull]
-
 ### リモートリポジトリの指定のブランチからフェッチし、マージする。
 
     git pull <remote_name> <branch>
+
+例) リモートブランチ origin のブランチ master からフェッチし、マージする。
+
+    $ git pull origin master
+    remote: Counting objects: 5, done.
+    remote: Total 3 (delta 0), reused 3 (delta 0)
+    Unpacking objects: 100% (3/3), done.
+    From https://github.com/tknpow22/sample
+     * branch            master     -> FETCH_HEAD
+       cabe6f8..86ae952  master     -> origin/master
+    Updating cabe6f8..86ae952
+    Fast-forward
+     test.txt | 1 +
+     1 file changed, 1 insertion(+)
 
 [git pull]
 
