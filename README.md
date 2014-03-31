@@ -751,6 +751,7 @@ git add を省略するときに使う。
      1 file changed, 1 insertion(+)
     $ git checkout master
     Switched to branch 'master'
+    
     $ git merge iss1
     Updating 91e7c4a..7999167
     Fast-forward
