@@ -472,6 +472,23 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
     git commit -m "message."
 
+例) ステージング済みの test.txt への変更をコミットする。
+
+    $ git status
+    On branch master
+    Changes to be committed:
+      (use "git reset HEAD <file>..." to unstage)
+    
+            modified:   test.txt
+    
+    $ git commit -m 'add line4'
+    [master 5142000] add line4
+     1 file changed, 1 insertion(+)
+    
+    $ git status
+    On branch master
+    nothing to commit, working directory clean
+
 [git commit]
 
 ### 追跡対象になっているファイルをステージングエリアに追加してから、コミットする。
@@ -479,6 +496,26 @@ git add を省略するときに使う。
 
     git commit -a -m "message."
 
+例) test.txt への変更をステージングしてから、コミットする。
+
+    $ git status
+    On branch master
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+    
+            modified:   test.txt
+    
+    no changes added to commit (use "git add" and/or "git commit -a")
+    
+    $ git commit -a -m 'add line5'
+    [master 259d707] add line5
+     1 file changed, 1 insertion(+)
+    
+    $ git status
+    On branch master
+    nothing to commit, working directory clean
+    
 [git commit]
 
 ### ステージングエリアにある内容で直前のコミットを上書きする。
