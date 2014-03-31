@@ -524,6 +524,26 @@ git add を省略するときに使う。
 
     git commit --amend -m "message."
 
+例) test.txt を変更し、直前のコミットを上書きしてコミットする。
+
+    $ git log --oneline --decorate
+    75016fc (HEAD, master) add line3
+    e7504fc add line2
+    9c124fb add test.txt
+    
+    $ echo 'line4' >> test.txt
+    
+    $ git add test.txt
+    
+    $ git commit --amend -m 'add line3 & line4'
+    [master 7b06182] add line3 & line4
+     1 file changed, 2 insertions(+)
+    
+    $ git log --oneline --decorate
+    7b06182 (HEAD, master) add line3 & line4
+    e7504fc add line2
+    9c124fb add test.txt
+
 [git commit]
 
 ### コミット履歴をハッシュ(短縮版)、件名、タグ等を一行で表示する。
