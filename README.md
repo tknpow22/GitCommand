@@ -570,11 +570,11 @@ git add を省略するときに使う。
 
 [git log]
 
-### リモートリポジトリの指定のブランチをフェッチする。
+### リモートリポジトリの指定のブランチからフェッチする。
 
     git fetch <remote_name> <branch>
 
-例) リモートブランチ origin のブランチ master からフェッチする。
+例) リモートリポジトリ origin のブランチ master からフェッチする。
 
     $ git fetch origin master
     From https://github.com/tknpow22/sample
@@ -586,7 +586,7 @@ git add を省略するときに使う。
 
     git pull <remote_name> <branch>
 
-例) リモートブランチ origin のブランチ master からフェッチし、マージする。
+例) リモートリポジトリ origin のブランチ master からフェッチし、マージする。
 
     $ git pull origin master
     remote: Counting objects: 5, done.
@@ -602,27 +602,31 @@ git add を省略するときに使う。
 
 [git pull]
 
-### ローカルリポジトリからリポートリポジトリに送信する。
+### リモートリポジトリの指定のブランチにプッシュする。
 
     git push <remote_name> <branch>
 
+例) リモートリポジトリ origin のブランチ master にプッシュする。
+
+    $ git push origin master
+    Counting objects: 5, done.
+    Writing objects: 100% (3/3), 266 bytes | 0 bytes/s, done.
+    Total 3 (delta 0), reused 0 (delta 0)
+    To https://github.com/tknpow22/sample.git
+       86ae952..8d1e696  master -> master
+
 [git push]
 
-### すべてのタグをリポートリポジトリの指定のブランチに送信する。
+### すべてのタグをリポートリポジトリの指定のブランチにプッシュする。
 
     git push <remote_name> <branch> --tags
 
-[git push]
+例) 全てのタグをリモートリポジトリ origin のブランチ master にプッシュする。
 
-### 作成した新しいブランチをリモートリポジトリに登録する
-
-    git push origin <branch>
-
-[git push]
-
-### ローカルリポジトリで削除したブランチをリモートリポジトリでも削除する。
-
-    git push origin :<branch>
+    $ git push origin master --tags
+    Total 0 (delta 0), reused 0 (delta 0)
+    To https://github.com/tknpow22/sample.git
+     * [new tag]         v1.0 -> v1.0
 
 [git push]
 
