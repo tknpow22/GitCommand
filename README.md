@@ -821,6 +821,49 @@ git add を省略するときに使う。
 
     git rebase <branch>
 
+例) ブランチ iss1 にブランチ master をリベースする。
+
+    $ echo 'line1' > test.txt
+    $ git add test.txt
+    $ git commit -m 'add test.txt'
+    #### ここでブランチ iss1 を作成しておく
+    $ git branch iss1
+    #### さらにブランチ master で変更する
+    $ echo 'line2' >> test.txt
+    $ git commit -am 'add line2'
+    #### ブランチ iss1 で変更する
+    $ git checkout iss1
+    Switched to branch 'iss1'
+    $ cat test.txt
+    line1
+    $ echo 'lineA' >> test.txt
+    $ git commit -am 'add lineA'
+
+    #### ブランチ iss1 にブランチ master をリベースする
+    $ git rebase master
+    First, rewinding head to replay your work on top of it...
+    Applying: add lineA
+    Using index info to reconstruct a base tree...
+    M       test.txt
+    Falling back to patching base and 3-way merge...
+    Auto-merging test.txt
+    CONFLICT (content): Merge conflict in test.txt
+    Failed to merge in the changes.
+    Patch failed at 0001 add lineA
+    The copy of the patch that failed is found in:
+       c:/usr/Git_LocalRepositories/sample/.git/rebase-apply/patch
+    
+    When you have resolved this problem, run "git rebase --continue".
+    If you prefer to skip this patch, run "git rebase --skip" instead.
+    To check out the original branch and stop rebasing, run "git rebase --abort".
+    
+    #### ここでエディタで競合を解決すること
+
+    #### 解決したらステージングし、リベースを続ける
+    $ git add test.txt
+    $ git rebase --continue
+    Applying: add lineA
+
 [git-rebase]
 
 ### ローカルリポジトリの reflog を表示する。
