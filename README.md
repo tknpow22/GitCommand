@@ -634,17 +634,27 @@ git add を省略するときに使う。
 
     git branch
 
+例) ローカルリポジトリのすべてのブランチを表示する。
+
+    $ git branch
+      iss1
+      iss5
+    * master
+
 [git branch]
 
-### ローカルのリモートブランチを表示する
-
-    git branch -r
-
-[git branch]
-
-### すべてのブランチを表示する
+### すべてのブランチを表示する。
 
     git branch -a
+
+例) すべてのブランチを表示する。
+
+    $ git branch -a
+      iss1
+      iss5
+    * master
+      remotes/origin/iss5
+      remotes/origin/master
 
 [git branch]
 
@@ -652,17 +662,45 @@ git add を省略するときに使う。
 
     git branch <new_branch>
 
+例) 新しいブランチ iss7 を作成する。
+
+    $ git branch iss7
+    $ git branch
+      iss1
+      iss5
+      iss7
+    * master
+
 [git branch]
 
 ### ローカルリポジトリのブランチを削除する。
 
     git branch -d <branch>
 
+例) ブランチ iss7 を削除する。
+
+    $ git branch -d iss7
+    Deleted branch iss7 (was 8d1e696).
+    $ git branch
+      iss1
+      iss5
+    * master
+
 [git branch]
 
 ### 新しいブランチをローカルリポジトリに作成し、作成したブランチに切り替える。
 
     git checkout -b <new_branch>
+
+例) 新しいブランチ iss8 を作成し、切り替える。
+
+    $ git checkout -b iss8
+    Switched to a new branch 'iss8'
+    $ git branch
+      iss1
+      iss5
+    * iss8
+      master
 
 [git checkout]
 
@@ -675,6 +713,16 @@ git add を省略するときに使う。
 ### ブランチを切り替える
 
     git checkout <branch>
+
+例) ブランを iss1 に切り替える。
+
+    $ git checkout iss1
+    Switched to branch 'iss1'
+    $ git branch
+    * iss1
+      iss5
+      iss8
+      master
 
 [git checkout]
 
