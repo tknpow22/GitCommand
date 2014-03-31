@@ -741,21 +741,81 @@ git add を省略するときに使う。
 
     git merge <branch>
 
+例) ブランチ iss1 での変更をブランチ master にマージする。
+
+    $ git checkout -b iss1
+    Switched to a new branch 'iss1'
+    $ echo 'line4' >> test.txt
+    $ git commit -am 'add line4'
+    [iss1 7999167] add line4
+     1 file changed, 1 insertion(+)
+    $ git checkout master
+    Switched to branch 'master'
+    $ git merge iss1
+    Updating 91e7c4a..7999167
+    Fast-forward
+     test.txt | 1 +
+     1 file changed, 1 insertion(+)
+    $ git log --oneline --decorate
+    7999167 (HEAD, master, iss1) add line4
+    91e7c4a add line3
+    7e2bc02 add line2
+    5fd4039 add test.txt
+
 [git-merge]
 
 ### 指定したブランチを現在のブランチにマージする(ファストフォワードしない)。
 
     git merge --no-ff <branch>
 
+例) ブランチ iss1 での変更をブランチ master にファストフォワードしないでマージする。
+
+    $ git checkout -b iss2
+    Switched to a new branch 'iss2'
+    $ echo 'line5' >> test.txt
+    $ git commit -am 'add line5'
+    [iss2 832479b] add line5
+     1 file changed, 1 insertion(+)
+    $ git checkout master
+    Switched to branch 'master'
+    
+    $ git merge --no-ff iss2
+    Merge made by the 'recursive' strategy.
+     test.txt | 1 +
+     1 file changed, 1 insertion(+)
+    $ git log --oneline --decorate
+    537f055 (HEAD, master) Merge branch 'iss2'
+    832479b (iss2) add line5
+    7999167 (iss1) add line4
+    91e7c4a add line3
+    7e2bc02 add line2
+    5fd4039 add test.txt
+
 [git-merge]
 
-### リモートブランチの内容をマージする
+### リモートブランチを現在のブランチにマージする
 
     git merge <remote_name>/<branch>
 
+例) リモートブランチ origin/master を現在のブランチ master にマージする
+
+    $ git fetch origin master
+    remote: Counting objects: 5, done.
+    remote: Total 3 (delta 0), reused 3 (delta 0)
+    Unpacking objects: 100% (3/3), done.
+    From https://github.com/tknpow22/sample
+     * branch            master     -> FETCH_HEAD
+       8d1e696..517a528  master     -> origin/master
+    
+    $ git merge origin/master
+    Updating 8d1e696..517a528
+    Fast-forward
+     test.txt | 1 +
+     1 file changed, 1 insertion(+)
+
 [git-merge]
 
-### 現在のブランチを指定のブランチにリベースする。
+### 指定のブランチを現在のブランチにリベースする。
 リモートリポジトリに push した後は使用してはいけない。
 
     git rebase <branch>
