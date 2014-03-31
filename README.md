@@ -398,11 +398,73 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
     git clean -f
 
+例) 追跡対象外のファイルを削除する。
+
+    $ git status
+    On branch master
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+    
+            modified:   test.txt
+    
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+    
+            test.bak
+    
+    no changes added to commit (use "git add" and/or "git commit -a")
+    
+    $ git clean -f
+    Removing test.bak
+    
+    $ git status
+    On branch master
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+    
+            modified:   test.txt
+    
+    no changes added to commit (use "git add" and/or "git commit -a")
+
 [git clean]
 
 ### ワークツリーから追跡対象外のファイルおよびフォルダを削除する。
 
     git clean -df
+
+例) 追跡対象外のファイルおよびフォルダを削除する。
+
+    $ git status
+    On branch master
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+    
+            modified:   test.txt
+    
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+    
+            test.bak
+            tmpdir/
+    
+    no changes added to commit (use "git add" and/or "git commit -a")
+    
+    $ git clean -df
+    Removing test.bak
+    Removing tmpdir/
+    
+    $ git status
+    On branch master
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+    
+            modified:   test.txt
+    
+    no changes added to commit (use "git add" and/or "git commit -a")
 
 [git clean]
 
