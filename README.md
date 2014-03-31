@@ -548,11 +548,25 @@ git add を省略するときに使う。
 
     git log --oneline --decorate
 
+例) コミット履歴を表示する。
+
+    $ git log --oneline --decorate
+    75016fc (HEAD, tag: v1.0, master) add line3
+    e7504fc add line2
+    9c124fb add test.txt
+
 [git log]
 
 ### リモートブランチのコミット履歴を表示する。
 
     git log <remote_name>/<branch>
+
+例) コミット履歴を表示する。
+
+    $ git log origin/master --oneline --decorate
+    9621bef (HEAD, origin/master, master) add line3
+    e4b00fa add line2
+    fa14b13 add test.txt
 
 [git log]
 
