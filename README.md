@@ -532,9 +532,7 @@ git add を省略するときに使う。
     9c124fb add test.txt
     
     $ echo 'line4' >> test.txt
-    
     $ git add test.txt
-    
     $ git commit --amend -m 'add line3 & line4'
     [master 7b06182] add line3 & line4
      1 file changed, 2 insertions(+)
