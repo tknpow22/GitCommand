@@ -725,7 +725,7 @@ git add を省略するときに使う。
 
     git checkout <branch>
 
-例) ブランを iss1 に切り替える。
+例) ブランチ iss1 に切り替える。
 
     $ git checkout iss1
     Switched to branch 'iss1'
