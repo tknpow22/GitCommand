@@ -708,6 +708,17 @@ git add を省略するときに使う。
 
     git checkout -b <new_branch> <existing_branch>
 
+例) ブランチ iss5 と元にブランチ iss9 を作成し、切り替える。
+
+    $ git checkout -b iss9 iss5
+    Switched to a new branch 'iss9'
+    $ git branch
+      iss1
+      iss5
+      iss8
+    * iss9
+      master
+
 [git checkout]
 
 ### ブランチを切り替える
