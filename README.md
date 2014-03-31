@@ -708,7 +708,7 @@ git add を省略するときに使う。
 
     git checkout -b <new_branch> <existing_branch>
 
-例) ブランチ iss5 と元にブランチ iss9 を作成し、切り替える。
+例) ブランチ iss5 を元にブランチ iss9 を作成し、切り替える。
 
     $ git checkout -b iss9 iss5
     Switched to a new branch 'iss9'
