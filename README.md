@@ -570,6 +570,18 @@ git add を省略するときに使う。
 
 [git log]
 
+### リモートリポジトリの指定のブランチをフェッチする。
+
+    git fetch <remote_name> <branch>
+
+例) リモートブランチ origin のブランチ master からフェッチする。
+
+    $ git fetch origin master
+    From https://github.com/tknpow22/sample
+     * branch            master     -> FETCH_HEAD
+
+[git fetch]
+
 ### リモートリポジトリの指定のブランチからフェッチし、マージする。
 
     git pull <remote_name> <branch>
@@ -661,24 +673,6 @@ git add を省略するときに使う。
     git checkout <branch>
 
 [git checkout]
-
-### リモートリポジトリで削除されたブランチのローカルキャッシュを削除する。
-
-    git fetch --prune origin
-
-[git fetch]
-
-### リモートリポジトリからすべてのブランチをフェッチする。
-
-    git fetch <remote_name>
-
-[git fetch]
-
-### リモートリポジトリの指定のブランチをフェッチする。
-
-    git fetch <remote_name> <branch>
-
-[git fetch]
 
 ### 指定したブランチを現在のブランチにマージする。
 
