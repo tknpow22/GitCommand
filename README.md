@@ -769,7 +769,7 @@ git add を省略するときに使う。
 
     git merge --no-ff <branch>
 
-例) ブランチ iss1 での変更をブランチ master にファストフォワードしないでマージする。
+例) ブランチ iss2 での変更をブランチ master にファストフォワードしないでマージする。
 
     $ git checkout -b iss2
     Switched to a new branch 'iss2'
