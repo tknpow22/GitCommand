@@ -9,7 +9,7 @@ git log
 
     git log -p --word-diff
 
-### コミット履歴を表示する(直近の n エントリのみ表示する)。
+### コミット履歴を表示する(直近の number エントリのみ表示する)。
 
     git log -<number>
     git log -n <number>
@@ -18,7 +18,7 @@ git log
 
     git log -p
 
-### 例) コミット履歴をハッシュ(短縮版)と件名とでグラフィカルに表示する。
+### コミット履歴をグラフィカルに表示する。
 
-    git log --pretty=format:"%h %s" --graph
+    git log --graph
 
