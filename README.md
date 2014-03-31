@@ -870,6 +870,32 @@ git add を省略するときに使う。
 
     git reflog
 
+例) reflog を表示する。
+
+    $ git reflog
+    b9a76fe HEAD@{0}: checkout: moving from iss1 to master
+    b715d09 HEAD@{1}: rebase finished: returning to refs/heads/iss1
+    b715d09 HEAD@{2}: rebase: add lineA
+    b9a76fe HEAD@{3}: rebase: checkout master
+    43203c3 HEAD@{4}: commit: add lineA
+    f5f7aad HEAD@{5}: checkout: moving from master to iss1
+    b9a76fe HEAD@{6}: commit: add line2
+    f5f7aad HEAD@{7}: commit (initial): add test.txt
+    
+    $ git checkout iss1
+    Switched to branch 'iss1'
+    
+    $ git reflog
+    b715d09 HEAD@{0}: checkout: moving from master to iss1
+    b9a76fe HEAD@{1}: checkout: moving from iss1 to master
+    b715d09 HEAD@{2}: rebase finished: returning to refs/heads/iss1
+    b715d09 HEAD@{3}: rebase: add lineA
+    b9a76fe HEAD@{4}: rebase: checkout master
+    43203c3 HEAD@{5}: commit: add lineA
+    f5f7aad HEAD@{6}: checkout: moving from master to iss1
+    b9a76fe HEAD@{7}: commit: add line2
+    f5f7aad HEAD@{8}: commit (initial): add test.txt
+
 [git reflog]
 
 ### リモート接続の一覧を URL を含めて表示する。
