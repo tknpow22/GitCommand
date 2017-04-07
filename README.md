@@ -1,6 +1,18 @@
 Git コマンドサンプル
 ====================
 
+### 新しいリポジトリを作成する。
+
+    git init
+
+    $ git init
+    Initialized empty Git repository in C:/Usr/Work/Temporary/work1/.git/
+
+### 新しいベアリポジトリを作成する。
+
+    $ git init --bare
+    Initialized empty Git repository in C:/Usr/Work/Temporary/work1/
+
 ### リモートリポジトリをローカルにクローンする。
 
     git clone <remote_url>
