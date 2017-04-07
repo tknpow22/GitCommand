@@ -89,6 +89,16 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
 [git stash]
 
+### 現在のワークツリーの状態を Untracked なファイルも含め、一時領域(stash)に保存する。
+
+    git stash -u
+
+    $ git stash -u
+    Saved working directory and index state WIP on branch1: 8ef382f init
+    HEAD is now at 8ef382f init
+
+[git stash]
+
 ### 一時領域(stash)の一覧を見る。
 最後に保存(プッシュ)した内容は一覧の先頭(stash@{0})に保存されている。
 
