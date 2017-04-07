@@ -5,13 +5,19 @@ Git コマンドサンプル
 
     git init
 
-    $ git init
-    Initialized empty Git repository in C:/Usr/Work/Temporary/work1/.git/
+```
+$ git init
+Initialized empty Git repository in C:/Usr/Work/Temporary/work1/.git/
+```
 
 ### 新しいベアリポジトリを作成する。
 
-    $ git init --bare
-    Initialized empty Git repository in C:/Usr/Work/Temporary/work1/
+    git init --bare
+
+```
+$ git init --bare
+Initialized empty Git repository in C:/Usr/Work/Temporary/work1/
+```
 
 ### リモートリポジトリをローカルにクローンする。
 
