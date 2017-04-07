@@ -42,7 +42,7 @@ pick 24c2732 bbb
 s d8a7fb0 ccc
 ```
 
-再度エディタが起動酢ので、コメントをひとつにまとめる
+再度エディタが起動するので、コメントをひとつにまとめる。
 
 ```
 # This is a combination of 2 commits.
@@ -67,6 +67,8 @@ bbb&ccc
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 ```
+
+完了。
 
 ```
 $ git log
