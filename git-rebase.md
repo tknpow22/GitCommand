@@ -1,8 +1,9 @@
 git rebase
 ==========
 
-### git rebase -i を使ってコミットをまとめる
-次のような状態があり、bbb と ccc を bbb&ccc にまとめたい。
+### git rebase -i を使ってコミットをまとめる。
+
+以下のような状態で bbb と ccc を bbb&ccc にまとめたい。
 
 ```
 $ git log
@@ -29,19 +30,19 @@ aaa の commit を指定する。
 
     git rebase -i 92ba29d415feec7aed86ee9ee27814f1f0014ad2
 
-表示されるエディタで、新しい方に squash を指定する
+エディタが起動するので、新しい方に squash を指定する
 
 ```
 pick 24c2732 bbb
 pick d8a7fb0 ccc
 ```
-
+↓
 ```
 pick 24c2732 bbb
 s d8a7fb0 ccc
 ```
 
-コメントをひとつにまとめる
+再度エディタが起動酢ので、コメントをひとつにまとめる
 
 ```
 # This is a combination of 2 commits.
@@ -56,7 +57,8 @@ ccc
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 ```
-
+↓
+```
 # This is a combination of 2 commits.
 # The first commit's message is:
 
@@ -64,7 +66,7 @@ bbb&ccc
 
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
-
+```
 
 ```
 $ git log
