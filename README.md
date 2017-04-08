@@ -309,6 +309,32 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
      git reset --soft HEAD^
 
 ```
+$ git log
+commit ab765ad89a8d383f8f7b7108d59faf6f9e42684e
+Author: tknpow22 <tknpow22@koutou-software.net>
+Date:   Sat Apr 8 12:15:39 2017 +0900
+
+    bbb
+
+commit 9bafa973e89f2e1c5a623e410f1d8fba8013a7be
+Author: tknpow22 <tknpow22@koutou-software.net>
+Date:   Sat Apr 8 12:05:04 2017 +0900
+
+    aaa
+
+Bono@ZEO MINGW64 /C/Usr/Work/Temporary/hoge (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   hoge.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+```
 Bono@ZEO MINGW64 /C/Usr/Work/Temporary/hoge (master)
 $ git reset --soft HEAD^
 
@@ -335,33 +361,6 @@ Changes not staged for commit:
         modified:   hoge.txt
 ```
 
-
-```
-$ git log
-$ git log
-commit ab765ad89a8d383f8f7b7108d59faf6f9e42684e
-Author: tknpow22 <tknpow22@koutou-software.net>
-Date:   Sat Apr 8 12:15:39 2017 +0900
-
-    bbb
-
-commit 9bafa973e89f2e1c5a623e410f1d8fba8013a7be
-Author: tknpow22 <tknpow22@koutou-software.net>
-Date:   Sat Apr 8 12:05:04 2017 +0900
-
-    aaa
-
-Bono@ZEO MINGW64 /C/Usr/Work/Temporary/hoge (master)
-$ git status
-On branch master
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-        modified:   hoge.txt
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
 
 [git reset]
 
