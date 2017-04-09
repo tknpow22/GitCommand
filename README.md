@@ -213,6 +213,22 @@ stash はスタックとして働き、保存した内容は stash の先頭(sta
 
 [git diff]
 
+### ステージングされた内容とワークツリーの内容を指定のツールで比較する。
+
+    git difftool
+
+$HOME/.gitconfig に以下のような設定が必要。下記例では C:/Bin/ 以下にインストールした WinMerge を使用している。
+
+```
+[diff]
+	tool = WinMerge
+[difftool "WinMerge"]
+	path = 'C:/Bin/WinMerge/WinMergeU.exe'
+	cmd = 'C:/Bin/WinMerge/WinMergeU.exe' -r -u \"$LOCAL\" \"$REMOTE\"
+```
+
+[git difftool]
+
 ### 編集中のファイルの内容を破棄し、直前にステージングした内容に戻す。
 ステージングした内容がない場合、直前にコミットした内容に戻る。
 
@@ -1079,6 +1095,7 @@ git add を省略するときに使う。
   [git commit]: git-commit.md
   [git config]: git-config.md
   [git diff]: git-diff.md
+  [git difftool]: git-difftool.md
   [git fetch]: git-fetch.md
   [git log]: git-log.md
   [git-merge]: git-merge.md
